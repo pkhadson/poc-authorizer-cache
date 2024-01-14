@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@nest-cdk/core':
-    specifier: 0.0.2-rc.22
-    version: 0.0.2-rc.22(@nestjs/common@10.3.0)(@nestjs/core@10.3.0)(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.1.14)
+    specifier: 0.0.2-rc.29
+    version: 0.0.2-rc.29(@nestjs/core@10.3.0)(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.1.14)(rxjs@7.8.1)
   '@nestjs/common':
     specifier: ^10.0.0
     version: 10.3.0(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.1.14)(rxjs@7.8.1)
@@ -17,6 +17,9 @@ dependencies:
   '@nestjs/platform-express':
     specifier: ^10.0.0
     version: 10.3.0(@nestjs/common@10.3.0)(@nestjs/core@10.3.0)
+  '@types/aws-lambda':
+    specifier: ^8.10.131
+    version: 8.10.131
   aws-cdk-lib:
     specifier: ^2.121.0
     version: 2.121.0(constructs@10.3.0)
@@ -876,18 +879,19 @@ packages:
     resolution: {integrity: sha512-Z7C/xXCiGWsg0KuKsHTKJxbWhpI3Vs5GwLfOean7MGyVFGqdRgBbAjOCh6u4bbjPc/8MJ2pZmK/0DLdCbivLDA==}
     engines: {node: '>=8'}
 
-  /@nest-cdk/build@0.0.0-rc.3:
-    resolution: {integrity: sha512-wJKF5Fvptdp0AHAL8ANa2bxyYPU3V3FDP0dA6FBHouaEO0CI5pw+/rI/KT6BdqufEw+57qx8LebOeRb+nwibrQ==}
+  /@nest-cdk/build@0.0.0-rc.6:
+    resolution: {integrity: sha512-/gFVEFUmncJOH6txsrSFLH4Lid92VlSAfikd824cxu3UI7jSNidKlmNV1R8k6MMSrPMRDBE72zf8E277nB/eNg==}
     dependencies:
       '@types/shelljs': 0.8.15
       shelljs: 0.8.5
     dev: false
 
-  /@nest-cdk/core@0.0.2-rc.22(@nestjs/common@10.3.0)(@nestjs/core@10.3.0)(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.1.14):
-    resolution: {integrity: sha512-+v2JpxdBa4oc/BpK1RzQU2alzOVLXeKvxMbe8UmjyVo5+NcO7gALf9YGEmWvuJweVgRTKVZ6lkiOhTMEh2LvFQ==}
+  /@nest-cdk/core@0.0.2-rc.29(@nestjs/core@10.3.0)(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.1.14)(rxjs@7.8.1):
+    resolution: {integrity: sha512-MuKmcYLxQhX1H5rMRPjoPZlC2vYc4RMK0paDbkvoi1baia7lYmarA3sYzdU7VyVTCM/CqVyy0CerPoyY7Guw1w==}
     hasBin: true
     dependencies:
-      '@nest-cdk/build': 0.0.0-rc.3
+      '@nest-cdk/build': 0.0.0-rc.6
+      '@nestjs/common': 10.3.0(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.1.14)(rxjs@7.8.1)
       '@nestjs/platform-express': 10.3.0(@nestjs/common@10.3.0)(@nestjs/core@10.3.0)
       '@nestjs/swagger': 7.1.17(@nestjs/common@10.3.0)(@nestjs/core@10.3.0)(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.1.14)
       '@vendia/serverless-express': 4.12.6
@@ -895,11 +899,11 @@ packages:
       class-validator-jsonschema: 5.0.0(class-transformer@0.5.1)(class-validator@0.14.1)
     transitivePeerDependencies:
       - '@fastify/static'
-      - '@nestjs/common'
       - '@nestjs/core'
       - class-transformer
       - class-validator
       - reflect-metadata
+      - rxjs
       - supports-color
     dev: false
 
@@ -1169,6 +1173,10 @@ packages:
   /@tsconfig/node16@1.0.4:
     resolution: {integrity: sha512-vxhUy4J8lyeyinH7Azl1pdd43GJhZH/tP2weN8TntQblOY+A0XbT8DJk1/oCPuOOyg/Ja757rG0CgHcWC8OfMA==}
     dev: true
+
+  /@types/aws-lambda@8.10.131:
+    resolution: {integrity: sha512-IWmFpqnVDvskYWnNSiu/qlRn80XlIOU0Gy5rKCl/NjhnI95pV8qIHs6L5b+bpHhyzuOSzjLgBcwgFSXrC1nZWA==}
+    dev: false
 
   /@types/babel__core@7.20.5:
     resolution: {integrity: sha512-qoQprZvz5wQFJwMDqeseRXWv3rqMvhgpbXFfVyWhbx9X47POIA6i/+dXefEmZKoAgOaTdaIgNSMqMIU61yRyzA==}
@@ -1830,14 +1838,14 @@ packages:
     resolution: {integrity: sha512-9GNFMRrEMG5y3Jvv+V4azWvc+qNWdWLTjDdhf/zgMlz8haaaLWv0xeAIWxz9PuWUBawsVxy0zZotjCdR3Xq+2w==}
     hasBin: true
     dependencies:
-      aws-sdk: 2.1535.0
+      aws-sdk: 2.1536.0
       commander: 3.0.2
       js-yaml: 3.14.1
       watchpack: 2.4.0
     dev: false
 
-  /aws-sdk@2.1535.0:
-    resolution: {integrity: sha512-Ah9prS7ZX4rIMPBeXmBD1NV6tIHoJoryrCe1Zr/Zk4PdEM743jezpfIyM9bMhzKi/Z0CmBkqtHx54uPAghsp7A==}
+  /aws-sdk@2.1536.0:
+    resolution: {integrity: sha512-Kwl5xKti6qURwKkasZPA9d4q72tcNt0e3ZZ2ikjZvWbfWcIuuLN0GpUTarU8UpV4EiEw3W5z5G3jyHy8JLNyLw==}
     engines: {node: '>= 10.0.0'}
     dependencies:
       buffer: 4.9.2
